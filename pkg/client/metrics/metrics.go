@@ -95,7 +95,7 @@ func (c *instrumentedGenericClient) Do(ctx context.Context, verb, endpoint strin
 			if apiErr, wasAPIErr := err.(*client.Error); wasAPIErr {
 				// measure API errors
 				apiErrorCount.With(prometheus.Labels{"error_code": string(apiErr.Type), "path": endpoint, "server": c.serverName}).Inc()
-				} else {
+			} else {
 				// increment a generic error code counter
 				apiErrorCount.With(prometheus.Labels{"error_code": "generic", "path": endpoint, "server": c.serverName}).Inc()
 			}
