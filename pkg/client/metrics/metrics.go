@@ -94,11 +94,11 @@ func (c *instrumentedGenericClient) Do(ctx context.Context, verb, endpoint strin
 		if err != nil {
 			if apiErr, wasAPIErr := err.(*client.Error); wasAPIErr {
 				// Measure API errors
-                apiErrorCount.With(prometheus.Labels{"error_code": string(apiErr.Type), "path": endpoint, "server": c.serverName}).Inc()
-			} else {
-                // Increment a generic error code counter
-                apiErrorCount.With(prometheus.Labels{"error_code": "generic", "path": endpoint, "server": c.serverName}).Inc()
-             }
+				apiErrorCount.With(prometheus.Labels{"error_code": string(apiErr.Type), "path": endpoint, "server": c.serverName}).Inc()
+				} else {
+				// Increment a generic error code counter
+				apiErrorCount.With(prometheus.Labels{"error_code": "generic", "path": endpoint, "server": c.serverName}).Inc()
+			}
 			return
 		}
 		queryLatency.With(prometheus.Labels{"path": endpoint, "server": c.serverName}).Observe(endTime.Sub(startTime).Seconds())
