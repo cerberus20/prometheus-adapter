@@ -35,7 +35,7 @@ var (
 	// queryLatency is the total latency of any query going through the
 	// various endpoints (query, range-query, series).  It includes some deserialization
 	// overhead and HTTP overhead.
-    queryLatency = metrics.NewHistogramVec(
+	queryLatency = metrics.NewHistogramVec(
 		&metrics.HistogramOpts{
 			Namespace: "prometheus_adapter",
 			Subsystem: "prometheus_client",
