@@ -61,7 +61,7 @@ var (
 func MetricsHandler() (http.HandlerFunc, error) {
 	registry := metrics.NewKubeRegistry()
 
-	errRegisterQueryLatency := registry.Register(queryLatency)
+    errRegisterQueryLatency := registry.Register(queryLatency)
 	if errRegisterQueryLatency != nil {
 		return nil, errRegisterQueryLatency
 	}
