@@ -66,7 +66,7 @@ func MetricsHandler() (http.HandlerFunc, error) {
 		return nil, errRegisterQueryLatency
 	}
 
-	errRegisterAPIErrorCount := registry.Register(apiErrorCount)
+    errRegisterAPIErrorCount := registry.Register(apiErrorCount)
     if errRegisterAPIErrorCount != nil {
         return nil, errRegisterAPIErrorCount
     }
