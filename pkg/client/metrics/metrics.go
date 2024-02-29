@@ -32,19 +32,19 @@ import (
 )
 
 var (
-	// queryLatency is the total latency of any query going through the
-	// various endpoints (query, range-query, series).  It includes some deserialization
-	// overhead and HTTP overhead.
-    queryLatency = metrics.NewHistogramVec(
-		&metrics.HistogramOpts{
-			Namespace: "prometheus_adapter",
-			Subsystem: "prometheus_client",
-			Name:      "request_duration_seconds",
-			Help:      "Prometheus client query latency in seconds.  Broken down by target prometheus endpoint and target server",
-			Buckets:   prometheus.DefBuckets,
-		},
-		[]string{"path", "server"},
-	)
+	  // queryLatency is the total latency of any query going through the
+	  // various endpoints (query, range-query, series).  It includes some deserialization
+	  // overhead and HTTP overhead.
+      queryLatency = metrics.NewHistogramVec(
+		  &metrics.HistogramOpts{
+			  Namespace: "prometheus_adapter",
+			  Subsystem: "prometheus_client",
+			  Name:      "request_duration_seconds",
+			  Help:      "Prometheus client query latency in seconds.  Broken down by target prometheus endpoint and target server",
+			  Buckets:   prometheus.DefBuckets,
+		  },
+		  []string{"path", "server"},
+	  )
 
 	// define a counter for API errors for various ErrorTypes
     apiErrorCount = metrics.NewCounterVec(
