@@ -48,14 +48,14 @@ var (
 
 	// define a counter for API errors for various ErrorTypes
 	apiErrorCount = metrics.NewCounterVec(
-        &metrics.CounterOpts{
-            Namespace: "prometheus_adapter",
-            Subsystem: "prometheus_client",
-            Name:      "api_errors_total",
-            Help:      "Total number of API errors",
-        },
-        []string{"error_code", "path", "server"},
-    )
+    	&metrics.CounterOpts{
+        	Namespace: "prometheus_adapter",
+        	Subsystem: "prometheus_client",
+        	Name:      "api_errors_total",
+        	Help:      "Total number of API errors",
+    	},
+    	[]string{"error_code", "path", "server"},
+	)
 )
 
 func MetricsHandler() (http.HandlerFunc, error) {
