@@ -48,28 +48,28 @@ var (
 
 	// define a counter for API errors for various ErrorTypes
 	apiErrorCount = metrics.NewCounterVec(
-    	&metrics.CounterOpts{
-        	Namespace: "prometheus_adapter",
-        	Subsystem: "prometheus_client",
-        	Name:      "api_errors_total",
-        	Help:      "Total number of API errors",
-    	},
-    	[]string{"error_code", "path", "server"},
+    		&metrics.CounterOpts{
+        		Namespace: "prometheus_adapter",
+        		Subsystem: "prometheus_client",
+        		Name:      "api_errors_total",
+        		Help:      "Total number of API errors",
+    		},
+    		[]string{"error_code", "path", "server"},
 	)
 )
 
 func MetricsHandler() (http.HandlerFunc, error) {
-    registry := metrics.NewKubeRegistry()
+	registry := metrics.NewKubeRegistry()
 
-    errRegisterQueryLatency := registry.Register(queryLatency)
+	errRegisterQueryLatency := registry.Register(queryLatency)
 	if errRegisterQueryLatency != nil {
 		return nil, errRegisterQueryLatency
 	}
 
-    errRegisterAPIErrorCount := registry.Register(apiErrorCount)
-    if errRegisterAPIErrorCount != nil {
-        return nil, errRegisterAPIErrorCount
-    }
+	errRegisterAPIErrorCount := registry.Register(apiErrorCount)
+	if errRegisterAPIErrorCount != nil {
+		return nil, errRegisterAPIErrorCount
+	}
 
 	apimetrics.Register()
 	return func(w http.ResponseWriter, req *http.Request) {
