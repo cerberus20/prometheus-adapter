@@ -47,7 +47,7 @@ var (
 	)
 
 	// define a counter for API errors for various ErrorTypes
-    apiErrorCount = metrics.NewCounterVec(
+	apiErrorCount = metrics.NewCounterVec(
         &metrics.CounterOpts{
             Namespace: "prometheus_adapter",
             Subsystem: "prometheus_client",
